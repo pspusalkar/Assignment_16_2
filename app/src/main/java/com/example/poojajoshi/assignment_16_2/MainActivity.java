@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DownloadManager manager = new DownloadManager(bar1, bar2, getFilesDir().getAbsolutePath());
-                manager.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "https://www.google.co.in/search?q=images&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjTy5Dl75rZAhWKN48KHVyaDMkQ_AUICigB&biw=1366&bih=693#imgrc=mVrwcCQle9g31M:");
+                manager.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "https://lh3.googleusercontent.com/ReJskOeJqBEcneTbOqOwR3uTSgt493VGFDLG5-9WUcSCKkYOjQ0fBKwUzeJl3bTvII769g=s47");
             }
         });
     }

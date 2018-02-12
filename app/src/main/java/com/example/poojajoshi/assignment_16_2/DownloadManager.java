@@ -1,6 +1,7 @@
 package com.example.poojajoshi.assignment_16_2;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ProgressBar;
 
 import java.io.FileOutputStream;
@@ -15,6 +16,8 @@ import java.io.File;
 import android.os.Environment;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap;
+import android.widget.Toast;
+
 import java.io.ByteArrayOutputStream;
 
 public class DownloadManager extends AsyncTask<String, Integer, String > {
@@ -49,13 +52,13 @@ public class DownloadManager extends AsyncTask<String, Integer, String > {
 
             outputStream = new BufferedOutputStream(dataStream);
 
-            String fileName = filePath + "image.png";
+            String fileName = filePath + "project.png";
 
             byte data[] = new byte[12000];
             long total = 0;
             int count;
 
-            while ((count = input.read(data)) != 1) {
+            while ((count = input.read(data)) != -1) {
                 if ( isCancelled() ) {
                     input.close();
                     return null;
@@ -65,9 +68,8 @@ public class DownloadManager extends AsyncTask<String, Integer, String > {
                 if ( lengthOfFile > 0 ) {
                     int progress = (int)(total * 100/lengthOfFile);
 
-                    // updaye the progress t0 progress bar
-                    bar1.setProgress(progress);
-                    bar2.setProgress(progress);
+                    // update the progress of progress bar
+                    publishProgress(progress);
                 }
                 outputStream.write(data, 0, count);
             }
@@ -92,14 +94,18 @@ public class DownloadManager extends AsyncTask<String, Integer, String > {
         super.onPostExecute(str);
     }
 
-    /*
+
     @Override
     protected void onProgressUpdate(Integer... progress) {
         super.onProgressUpdate(progress);
 
         bar1.setIndeterminate(false);
-        // bar1.setMax(100);
+        bar1.setMax(100);
         bar1.setProgress(progress[0]);
+
+        bar2.setIndeterminate(false);
+        bar2.setMax(100);
+        bar2.setProgress(progress[0]);
     }
-    */
+
 }
